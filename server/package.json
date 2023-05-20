@@ -1,0 +1,15 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Servidor para conexão com Banco de Dados de usuários.",
+  "main": "src/server.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Douglas Aguiar",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.2.1",
+    "typescript": "^5.0.4"
+  }
+}

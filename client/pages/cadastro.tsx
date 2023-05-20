@@ -4,7 +4,9 @@ import LoginCard from '../components/loginCard';
 export default function CadastroPage() {
   return (
     <div className={ `${styles.background} ${styles.card}` }>
-      <LoginCard />
+      <LoginCard title="Faça seu Cadastro">
+        
+        </LoginCard>
     </div>
   )
 }

@@ -8,7 +8,7 @@ type Props = {
 export default function LoginCard({ title, children }: Props) {
   return (
     <div className={ styles.card }>
-      <h4 className={ styles.title }>{ title }</h4>
+      <h2 className={ styles.title }>{ title }</h2>
       { children }
     </div>
   )

@@ -1,9 +1,9 @@
 import styles from "../styles/pages/login.module.css";
+import Link from "next/link";
 
 import Button from "../components/button";
 import Input from "../components/input";
 import LoginCard from "../components/loginCard";
-import Link from "next/link";
 
 export default function LoginPage() {
   return (
@@ -13,7 +13,7 @@ export default function LoginPage() {
           <Input type="text" placeholder="Seu e-mail:" />
           <Input type="password" placeholder="Sua senha:" />
           <Button>Login</Button>
-          <p style={{ textAlign: "center" }}>Ainda não possui conta? {" "}<Link href="/cadastro">Cadastrar</Link></p>
+          <p className={ styles.p }>Ainda não possui conta? {" "}<Link href="/cadastro" className={ styles.link }>Cadastrar</Link></p>
         </form>
       </LoginCard>
     </div>

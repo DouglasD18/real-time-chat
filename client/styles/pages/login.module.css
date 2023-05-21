@@ -14,3 +14,16 @@
   flex-direction: column;
   gap: 0.5vh;
 }
+
+.p {
+  text-align: center;
+  font-size: 1.5vh;
+}
+
+.link {
+  color: #2371FF;
+}
+
+.link:hover {
+  text-decoration: none;
+}

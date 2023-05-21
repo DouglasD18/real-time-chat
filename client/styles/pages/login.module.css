@@ -1,0 +1,37 @@
+.background {
+  background-color: #000;
+  min-height: 100vh;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8vh;
+}
+
+.p {
+  text-align: center;
+  font-size: 1.5vh;
+}
+
+.link {
+  color: #2371FF;
+  text-decoration: underline;
+}
+
+.link:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+  font-weigth: bold;
+  text-align: center;
+}

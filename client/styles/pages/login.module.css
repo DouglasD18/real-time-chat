@@ -12,7 +12,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 0.5vh;
+  gap: 0.8vh;
 }
 
 .p {

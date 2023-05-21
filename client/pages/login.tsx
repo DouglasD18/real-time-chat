@@ -31,9 +31,25 @@ export default function LoginPage() {
   const handleForm = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await fetch("api/cadastro", {
-        method: "POST",
-        body: JSON.stringify(formData)
+      let response;
+
+      if (userExists) {
+        response = await fetch("api/login", {
+          method: "GET",
+          body: JSON.stringify(formData)
+        })
+        
+      } else {
+        response = await fetch("api/login", {
+          method: "POST",
+          body: JSON.stringify(formData)
+        });
+      }
+
+      setFormaData({
+        name: "",
+        email: "",
+        password: ""
       });
 
       const token = await response.json();

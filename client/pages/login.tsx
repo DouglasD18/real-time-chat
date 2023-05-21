@@ -38,7 +38,7 @@ export default function LoginPage() {
           method: "GET",
           body: JSON.stringify(formData)
         })
-        
+
       } else {
         response = await fetch("api/login", {
           method: "POST",
@@ -53,7 +53,7 @@ export default function LoginPage() {
       });
 
       const token = await response.json();
-      if (response.status !== 201) throw new Error(token);
+      if (response.status !== 201 && response.status !== 200) throw new Error(token);
 
       sessionStorage.setItem('authorization', token);
       router.push("/");

@@ -22,8 +22,16 @@
 
 .link {
   color: #2371FF;
+  text-decoration: underline;
 }
 
 .link:hover {
   text-decoration: none;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+  font-weigth: bold;
+  text-align: center;
 }

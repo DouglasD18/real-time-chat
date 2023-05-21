@@ -1,7 +1,8 @@
 import styles from "../styles/components/input.module.css";
 
 type Props = {
-  children: string | JSX.Element | JSX.Element[] 
+  type: string
+  placeholder: string
 } 
 
 export default function Input(props: Props) {

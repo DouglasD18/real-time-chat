@@ -11,7 +11,7 @@ export class DbLogin implements ILogin {
 
     if (exists === null) throw new NotFoundError();
 
-    const token = await this.encrypter.handle(exists);
+    const token = this.encrypter.handle(exists);
 
     return token;
   }

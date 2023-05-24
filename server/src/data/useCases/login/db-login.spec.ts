@@ -16,8 +16,8 @@ interface SutTypes {
 
 const makeEncrypter = (): Encrypter => {
   class EncrypterStub implements Encrypter {
-    handle(user: User): Promise<string> {
-      return new Promise(resolve => resolve("token"));
+    handle(user: User): string {
+      return "token";
     }
   }
 

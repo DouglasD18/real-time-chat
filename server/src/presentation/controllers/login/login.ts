@@ -1,4 +1,4 @@
-import { Controller, HttpRequest, HttpResponse, ILogin, InvalidParamError, badRequest, ok, serverError } from "./login-protocols";
+import { Controller, HttpRequest, HttpResponse, ILogin, InvalidParamError, badRequest, notFound, ok, serverError } from "./login-protocols";
 
 export class LoginController implements Controller {
   constructor(private login: ILogin) {}
@@ -15,6 +15,8 @@ export class LoginController implements Controller {
 
       return ok(token);
     } catch (error) {
+      if (error.name == "NotFoundError") return notFound();
+
       return serverError();
     }
   }

@@ -8,6 +8,13 @@ export const badRequest = (error: Error): HttpResponse => {
   }
 }
 
+export const notFound = (): HttpResponse => {
+  return {
+    statusCode: 404,
+    body: "Usuário não encontrado!"
+  }
+}
+
 export const serverError = (): HttpResponse => {
   return {
     statusCode: 500,

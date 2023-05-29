@@ -6,7 +6,11 @@
   "name": "socket",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/socket.io": "^3.0.2",
+    "typescript": "^5.0.4"
+  },
   "scripts": {
     "start": "node index.js"
   },

@@ -3,6 +3,7 @@ import styles from "../styles/pages/login.module.css";
 
 const LOGIN_TEXT = "Ainda não possui conta? ";
 const CADASTRO_TEXT = "Já possui conta? ";
+const SERVER_ROUTE = process.env.SERVER_ROUTE || "http://localhost:3001";
 
 import Button from "../components/button";
 import Input from "../components/input";
@@ -34,13 +35,13 @@ export default function LoginPage() {
       let response;
 
       if (userExists) {
-        response = await fetch("api/login", {
+        response = await fetch(SERVER_ROUTE + "login", {
           method: "GET",
           body: JSON.stringify(formData)
         })
 
       } else {
-        response = await fetch("api/login", {
+        response = await fetch(SERVER_ROUTE + "login", {
           method: "POST",
           body: JSON.stringify(formData)
         });

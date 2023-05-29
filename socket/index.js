@@ -1,28 +1,34 @@
 const PORT = process.env.PORT;
 const ROUTE = process.env.ROUTE;
 
-const app = require('express')()
-const server = require('http').createServer(app)
-const io = require('socket.io')(server, {cors: {origin: ROUTE }})
+import express from 'express';
+import SocketIo from 'socket.io';
+
+const app = express();
+
+const server = app.listen(PORT, () => {
+  console.log('Listening at port ', PORT);
+});
+
+const io = SocketIo(server, { cors: ROUTE });
 
 
-io.on('connection', socket => {
-  console.log('Usuário conectado!', socket.id);
-
+io.on('connect', socket => {
   socket.on('disconnect', reason => {
-    console.log('Usuário desconectado!', socket.id)
+    io.emit('disconnect', {
+      reason,
+      author: socket.data.email
+    })
   })
 
-  socket.on('set_username', username => {
-    socket.data.username = username
+  socket.on('set_user_email', email => {
+    socket.data.email = email
   })
 
   socket.on('message', text => {
     io.emit('receive_message', {
       text,
-      author: socket.data.username
+      author: socket.data.email
     })
   })
 })
-
-server.listen(PORT, () => console.log('Server running...'));

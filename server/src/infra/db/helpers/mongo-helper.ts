@@ -1,12 +1,16 @@
-import { Collection, MongoClient } from "mongodb";
+import { config } from "dotenv";
+import { MongoClient } from "mongodb";
+import mongoose, { Collection } from "mongoose";
 
-const URL = process.env.MONGO_URL;
+config();
+
+const URL = process.env.MONGO_URL || "mongodb://localhost:27017/users-db";
 
 export const MongoHelper = {
   client: null as MongoClient,
 
   async connect(): Promise<void> {
-    this.client = await MongoClient.connect(URL)
+    this.client = await mongoose.connect(URL)
   },
 
   async disconnect(): Promise<void> {

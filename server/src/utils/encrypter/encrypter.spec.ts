@@ -1,6 +1,6 @@
 import { User } from "../../data/protocols";
 import { EncrypterAdapter } from "./encrypter";
-import * as jwt from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
 const USER: User = {
   id: "any_id",

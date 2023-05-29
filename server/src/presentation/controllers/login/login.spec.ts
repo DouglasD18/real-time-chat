@@ -27,7 +27,7 @@ const makeSut = (): SutTypes => {
 }
 
 describe('Login Controller', () => {
-  it('Should return 400 if no password is invalid.', async () => {
+  it('Should return 400 if password is invalid.', async () => {
     const { sut } = makeSut();
     const httpRequest = {
       body: {

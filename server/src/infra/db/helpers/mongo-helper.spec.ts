@@ -3,7 +3,6 @@ import { MongoHelper as sut } from "./mongo-helper"
 describe("MongoHelper", () => {
   beforeAll(async () => {
     await sut.connect();
-    
   })
 
   afterAll(async () => {

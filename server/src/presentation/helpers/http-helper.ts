@@ -35,3 +35,10 @@ export const ok = (data: any): HttpResponse => {
     body: data
   }
 }
+
+export const created = (data: any): HttpResponse => {
+  return {
+    statusCode: 201,
+    body: data
+  }
+}

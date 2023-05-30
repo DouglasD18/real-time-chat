@@ -1,5 +1,5 @@
 import { LoginController } from "./login";
-import { ILogin, InvalidParamError, NotFoundError, ServerError, UserLogin } from "./login-protocols";
+import { ILogin, InvalidParamError, MissingParamError, NotFoundError, ServerError, UserLogin } from "./login-protocols";
 
 interface SutTypes {
   sut: LoginController
@@ -27,6 +27,34 @@ const makeSut = (): SutTypes => {
 }
 
 describe('Login Controller', () => {
+  it('Should return 400 if email is no provided.', async () => {
+    const { sut } = makeSut();
+    const httpRequest = {
+      body: {
+        password: "my_password"
+      }
+    }
+
+    const httpResponse = await sut.handle(httpRequest);
+
+    expect(httpResponse.statusCode).toBe(400);
+    expect(httpResponse.body).toEqual(new MissingParamError('email'));
+  })
+
+  it('Should return 400 if password is no provided.', async () => {
+    const { sut } = makeSut();
+    const httpRequest = {
+      body: {
+        email: "doe@mail.com"
+      }
+    }
+
+    const httpResponse = await sut.handle(httpRequest);
+
+    expect(httpResponse.statusCode).toBe(400);
+    expect(httpResponse.body).toEqual(new MissingParamError('password'));
+  })
+
   it('Should return 400 if password is invalid.', async () => {
     const { sut } = makeSut();
     const httpRequest = {
@@ -108,6 +136,6 @@ describe('Login Controller', () => {
     const httpResponse = await sut.handle(httpRequest);
 
     expect(httpResponse.statusCode).toBe(200);
-    expect(httpResponse.body).toEqual("token");
+    expect(httpResponse.body).toEqual({ token: "token" });
   })
 })

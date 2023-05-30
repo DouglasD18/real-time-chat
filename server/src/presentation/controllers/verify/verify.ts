@@ -7,7 +7,7 @@ export class VerifyController implements Controller {
     try {
       const { token } = httpRequest.body;
 
-      if (!token) return badRequest(new MissingParamError("token", "Token não fornecido!"));
+      if (!token) return badRequest(new MissingParamError("token"));
 
       const user = await this.verify.handle(token);
 

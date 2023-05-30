@@ -48,7 +48,7 @@ describe('Verify Controller', () => {
     const httpResponse = await sut.handle(httpRequest);
 
     expect(httpResponse.statusCode).toBe(400);
-    expect(httpResponse.body).toEqual(new MissingParamError("token", "Token não fornecido!"));
+    expect(httpResponse.body).toEqual(new MissingParamError("token"));
   })
 
   it('Should call IVerify with correct values.', async () => {

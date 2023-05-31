@@ -6,7 +6,7 @@ export class MongoLoginRepository implements LoginRepository {
   async handle(user: UserLogin): Promise<User> {
     const { email, password } = user;
     
-    const accountCollection = await MongoHelper.getCollection('users');
+    const accountCollection = await MongoHelper.getCollection('users-db');
     const response = await accountCollection.findOne({ email, password });
 
     return response as unknown as User;

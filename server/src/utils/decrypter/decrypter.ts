@@ -2,7 +2,7 @@ import { User } from "../../data/protocols";
 import { IVerify } from "../../domain/useCases";
 import jwt from 'jsonwebtoken';
 
-const SECRET = process.env.JWT_SECRET;
+const SECRET = process.env.JWT_SECRET || "issoeumasenha";
 
 export class DecrypterVerify implements IVerify {
   handle(token: string): Promise<User> {

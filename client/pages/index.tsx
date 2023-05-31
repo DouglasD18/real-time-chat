@@ -4,7 +4,7 @@ import { socketClient } from '../socket';
 import Users from '../components/users';
 import Chat from "../components/chat";
 
-const SERVER_ROUTE = process.env.SERVER_ROUTE || "http://localhost:3001";
+const SERVER_ROUTE = process.env.SERVER_ROUTE || "http://localhost:3001/api/users";
 
 export default function Home() {
   const router = useRouter();
@@ -52,7 +52,7 @@ export default function Home() {
   }
 
   return (
-    <div>
+    <div className="index">
       <Users socket={ socket } />
       <Chat socket={ socket } />
     </div>

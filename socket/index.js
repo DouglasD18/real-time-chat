@@ -1,8 +1,9 @@
+require('dotenv').config();
+
 const PORT = process.env.PORT;
 const ROUTE = process.env.ROUTE;
 
-import express from 'express';
-import SocketIo from 'socket.io';
+const express = require('express');
 
 const app = express();
 
@@ -10,7 +11,7 @@ const server = app.listen(PORT, () => {
   console.log('Listening at port ', PORT);
 });
 
-const io = SocketIo(server, { cors: ROUTE });
+const io = require('socket.io')(server, { cors: ROUTE });
 
 
 io.on('connect', socket => {

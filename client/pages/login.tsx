@@ -13,7 +13,7 @@ import { useRouter } from "next/router";
 export default function LoginPage() {
   const [formData, setFormaData] = useState({
     name: "",
-    email: "",
+    cpf: "",
     password: ""
   });
   const [userExists, setUserExists] = useState(true);
@@ -49,7 +49,7 @@ export default function LoginPage() {
 
       setFormaData({
         name: "",
-        email: "",
+        cpf: "",
         password: ""
       });
       console.log(response);
@@ -79,9 +79,9 @@ export default function LoginPage() {
           /> }
           <Input
             type="text"
-            placeholder="Seu e-mail:"
-            value={ formData.email }
-            onChange={ (e: ChangeEvent<HTMLInputElement>) => { handleFormData(e, "email") } }
+            placeholder="Seu cpf:"
+            value={ formData.cpf }
+            onChange={ (e: ChangeEvent<HTMLInputElement>) => { handleFormData(e, "cpf") } }
             />
           <Input
             type="password"

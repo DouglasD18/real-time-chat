@@ -3,14 +3,14 @@ import { Encrypter, SignUpRepository, User, UserSignUp } from "./db-sign-up-prot
 
 const USER: UserSignUp = {
   name: "any_name",
-  email: "any@mail.com",
+  cpf: "any@mail.com",
   password: "any_password"
 }
 
 const USER_ACCOUNT: User = {
   id: 'any_id',
   name: USER.name,
-  email: USER.email,
+  cpf: USER.cpf,
   password: USER.password
 }
 

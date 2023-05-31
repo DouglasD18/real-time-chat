@@ -11,32 +11,32 @@ export default function Home() {
   const [socket, setSocket] = useState(socketClient);
   
   useEffect(() => {
-    async function verifyEmail() {
+    async function verifyName() {
       const token = sessionStorage.getItem("authorization");
 
-      let email;
-      if (token) email = await getEmailByToken(token);
+      let name;
+      if (token) name = await getNameByToken(token);
       
-      if (!email || email.length === 0) {
+      if (!name || name.length === 0) {
         router.push("/login");
       } else {
-        connect(email);
+        connect(name);
       }
     }
 
-    verifyEmail();
+    verifyName();
   });
 
-  const getEmailByToken = async (token: string) => {
+  const getNameByToken = async (token: string) => {
     try {
       const response = await fetch(SERVER_ROUTE + "/verify", {
         method: "GET",
         body: JSON.stringify({ token })
       });
 
-      const email = await response.json();
+      const name = await response.json();
 
-      return email;
+      return name;
     } catch (error) {
       let message;
       if (error instanceof Error) message = error.message;
@@ -45,9 +45,9 @@ export default function Home() {
     }
   }
 
-  const connect = (email: string) => {
+  const connect = (name: string) => {
     socketClient.connect();
-    socketClient.emit("set_user_email", email);
+    socketClient.emit("set_user_name", name);
     setSocket(socketClient);
   }
 

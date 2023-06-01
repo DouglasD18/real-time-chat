@@ -13,7 +13,7 @@ export class VerifyController implements Controller {
 
       if (!user) return unauthorized();
 
-      return ok({ email: user.email });
+      return ok({ name: user.name });
     } catch (error) {
       return serverError();
     }

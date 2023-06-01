@@ -3,10 +3,10 @@ import { MongoHelper } from "../helpers/mongo-helper";
 
 export class MongoSignUpRepository implements SignUpRepository {
   async handle(user: UserSignUp): Promise<User> {
-    const { email, password, name } = user;
+    const { cpf, password, name } = user;
     
     const accountCollection = await MongoHelper.getCollection('users-db');
-    const { insertedId } = await accountCollection.insertOne({ name, email, password });
+    const { insertedId } = await accountCollection.insertOne({ name, cpf, password });
 
     const account = { id: insertedId.toString(), ...user };
 

@@ -4,7 +4,7 @@ import { Encrypter, LoginRepository, NotFoundError, User, UserLogin } from "./db
 const USER: User = {
   id: "any_id",
   name: "any_name",
-  email: "any@mail.com",
+  cpf: "any@mail.com",
   password: "any_password"
 }
 
@@ -50,7 +50,7 @@ describe('DbLogin', () => {
   it('Should call LoginRepository with correct values.', async () => {
     const { sut, loginRepositoryStub } = makeSut();
     const user = {
-      email: "doe@mail.com",
+      cpf: "doe@mail.com",
       password: "password"
     }
 
@@ -63,7 +63,7 @@ describe('DbLogin', () => {
   it('Should return NotFoundError if LoginRepository returns null', async () => {
     const { sut, loginRepositoryStub } = makeSut();
     const user = {
-      email: "doe@mail.com",
+      cpf: "doe@mail.com",
       password: "password"
     }
 
@@ -78,7 +78,7 @@ describe('DbLogin', () => {
   it('Should throw if LoginRepository throws', async () => {
     const { sut, loginRepositoryStub } = makeSut();
     const user = {
-      email: "doe@mail.com",
+      cpf: "doe@mail.com",
       password: "password"
     }
 
@@ -93,7 +93,7 @@ describe('DbLogin', () => {
   it('Should call Encrypter with correct values.', async () => {
     const { sut, encrypterStub } = makeSut();
     const user = {
-      email: "doe@mail.com",
+      cpf: "doe@mail.com",
       password: "password"
     }
 
@@ -106,7 +106,7 @@ describe('DbLogin', () => {
   it('Should throw if Encrypter throws', async () => {
     const { sut, encrypterStub } = makeSut();
     const user = {
-      email: "doe@mail.com",
+      cpf: "doe@mail.com",
       password: "password"
     }
 
@@ -122,7 +122,7 @@ describe('DbLogin', () => {
     const { sut } = makeSut();
 
     const user = {
-      email: "doe@mail.com",
+      cpf: "doe@mail.com",
       password: "password"
     }
 

@@ -6,11 +6,11 @@ import { InvalidParamError, MissingParamError, ServerError } from "../login/logi
 const USER: User = {
   id: "any_id",
   name: "any_name",
-  email: "any@mail.com",
+  cpf: "any@mail.com",
   password: "any_password"
 }
 
-const EMAIL = USER.email;
+const NAME = USER.name;
 const TOKEN = "any_token";
 
 interface SutTypes {
@@ -110,6 +110,6 @@ describe('Verify Controller', () => {
     const httpResponse = await sut.handle(httpRequest);
 
     expect(httpResponse.statusCode).toBe(200);
-    expect(httpResponse.body).toEqual({ email: EMAIL });
+    expect(httpResponse.body).toEqual({ name: NAME });
   })
 })

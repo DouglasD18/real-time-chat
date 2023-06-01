@@ -27,7 +27,7 @@ const makeSut = (): SutTypes => {
 }
 
 describe('Login Controller', () => {
-  it('Should return 400 if email is no provided.', async () => {
+  it('Should return 400 if cpf is no provided.', async () => {
     const { sut } = makeSut();
     const httpRequest = {
       body: {
@@ -38,14 +38,14 @@ describe('Login Controller', () => {
     const httpResponse = await sut.handle(httpRequest);
 
     expect(httpResponse.statusCode).toBe(400);
-    expect(httpResponse.body).toEqual(new MissingParamError('email'));
+    expect(httpResponse.body).toEqual(new MissingParamError('cpf'));
   })
 
   it('Should return 400 if password is no provided.', async () => {
     const { sut } = makeSut();
     const httpRequest = {
       body: {
-        email: "doe@mail.com"
+        cpf: "doe@mail.com"
       }
     }
 
@@ -59,7 +59,7 @@ describe('Login Controller', () => {
     const { sut } = makeSut();
     const httpRequest = {
       body: {
-        email: "doe@mail.com",
+        cpf: "doe@mail.com",
         password: "word"
       }
     }
@@ -74,7 +74,7 @@ describe('Login Controller', () => {
     const { sut, loginStub } = makeSut();
     const httpRequest = {
       body: {
-        email: "doe@mail.com",
+        cpf: "doe@mail.com",
         password: "my_password"
       }
     }
@@ -83,7 +83,7 @@ describe('Login Controller', () => {
     sut.handle(httpRequest);
 
     expect(handleSpy).toHaveBeenCalledWith({
-      email: "doe@mail.com",
+      cpf: "doe@mail.com",
       password: "my_password"
     });
   })
@@ -92,7 +92,7 @@ describe('Login Controller', () => {
     const { sut, loginStub } = makeSut();
     const httpRequest = {
       body: {
-        email: "doe@mail.com",
+        cpf: "doe@mail.com",
         password: "my_password"
       }
     }
@@ -110,7 +110,7 @@ describe('Login Controller', () => {
     const { sut, loginStub } = makeSut();
     const httpRequest = {
       body: {
-        email: "doe@mail.com",
+        cpf: "doe@mail.com",
         password: "my_password"
       }
     }
@@ -128,7 +128,7 @@ describe('Login Controller', () => {
     const { sut } = makeSut();
     const httpRequest = {
       body: {
-        email: "valid@mail.com",
+        cpf: "valid@mail.com",
         password: "valid_password"
       }
     }

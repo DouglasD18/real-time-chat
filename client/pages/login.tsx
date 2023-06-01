@@ -3,7 +3,7 @@ import styles from "../styles/pages/login.module.css";
 
 const LOGIN_TEXT = "Ainda não possui conta? ";
 const CADASTRO_TEXT = "Já possui conta? ";
-const SERVER_ROUTE = process.env.SERVER_ROUTE || "http://localhost:3001";
+const SERVER_ROUTE = process.env.SERVER_ROUTE || "http://localhost:3001/api/users";
 
 import Button from "../components/button";
 import Input from "../components/input";
@@ -13,11 +13,13 @@ import { useRouter } from "next/router";
 export default function LoginPage() {
   const [formData, setFormaData] = useState({
     name: "",
-    email: "",
+    cpf: "",
     password: ""
   });
   const [userExists, setUserExists] = useState(true);
   const [error, setError] = useState('');
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [disabledClass, setDisabledClass] = useState("disabled");
   const router = useRouter();
 
   const title = userExists ? "Faça seu Login" : "Faça seu Cadastro";
@@ -27,6 +29,15 @@ export default function LoginPage() {
       ...formData,
       [name]: e.target.value
     })
+
+    if (formData.cpf.trim().length === 11 &&
+        formData.password.trim().length > 5) {
+      setIsDisabled(false);
+      setDisabledClass("abled");
+    } else {
+      setIsDisabled(true);
+      setDisabledClass("disabled");
+    }
   }
 
   const handleForm = async (e: FormEvent<HTMLFormElement>) => {
@@ -35,13 +46,13 @@ export default function LoginPage() {
       let response;
 
       if (userExists) {
-        response = await fetch(SERVER_ROUTE + "login", {
+        response = await fetch(SERVER_ROUTE + "/login", {
           method: "GET",
           body: JSON.stringify(formData)
         })
 
       } else {
-        response = await fetch(SERVER_ROUTE + "login", {
+        response = await fetch(SERVER_ROUTE + "/login", {
           method: "POST",
           body: JSON.stringify(formData)
         });
@@ -49,9 +60,11 @@ export default function LoginPage() {
 
       setFormaData({
         name: "",
-        email: "",
+        cpf: "",
         password: ""
       });
+      setIsDisabled(true);
+      console.log(response);
 
       const token = await response.json();
       if (response.status !== 201 && response.status !== 200) throw new Error(token);
@@ -78,9 +91,9 @@ export default function LoginPage() {
           /> }
           <Input
             type="text"
-            placeholder="Seu e-mail:"
-            value={ formData.email }
-            onChange={ (e: ChangeEvent<HTMLInputElement>) => { handleFormData(e, "email") } }
+            placeholder="Seu cpf:"
+            value={ formData.cpf }
+            onChange={ (e: ChangeEvent<HTMLInputElement>) => { handleFormData(e, "cpf") } }
             />
           <Input
             type="password"
@@ -88,7 +101,7 @@ export default function LoginPage() {
             value={ formData.password }
             onChange={ (e: ChangeEvent<HTMLInputElement>) => { handleFormData(e, "password") } }
           />
-          <Button>{ userExists ? "Login" : "Cadastrar" }</Button>
+          <Button isDisabled={ isDisabled } disabledClass={ disabledClass }>{ userExists ? "Login" : "Cadastrar" }</Button>
           {error && <p className={ styles.error }>{ error }</p>}
           <p className={ styles.p }>{ userExists ? LOGIN_TEXT : CADASTRO_TEXT }<a onClick={() => setUserExists(!userExists) } className={ styles.link }>{ userExists ? "Cadastrar" : "Login" }</a></p>
         </form>

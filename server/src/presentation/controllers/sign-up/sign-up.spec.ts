@@ -6,13 +6,13 @@ import { ISignUp, InvalidParamError, MissingParamError, NotFoundError, ServerErr
 const USER: User = {
   id: "any_id",
   name: "any_name",
-  email: "valid@mail.com",
+  cpf: "valid@mail.com",
   password: "valid_password"
 }
 
 const BODY: UserSignUp = {
   name: "any_name",
-  email: "valid@mail.com",
+  cpf: "valid@mail.com",
   password: "valid_password"
 }
 
@@ -48,7 +48,7 @@ describe('SignUp Controller', () => {
     const { sut } = makeSut();
     const httpRequest = {
       body: {
-        email: BODY.email,
+        cpf: BODY.cpf,
         password: BODY.password
       }
     }
@@ -59,7 +59,7 @@ describe('SignUp Controller', () => {
     expect(httpResponse.body).toEqual(new MissingParamError('name'));
   })
 
-  it('Should return 400 if email is no provided.', async () => {
+  it('Should return 400 if cpf is no provided.', async () => {
     const { sut } = makeSut();
     const httpRequest = {
       body: {
@@ -71,7 +71,7 @@ describe('SignUp Controller', () => {
     const httpResponse = await sut.handle(httpRequest);
 
     expect(httpResponse.statusCode).toBe(400);
-    expect(httpResponse.body).toEqual(new MissingParamError('email'));
+    expect(httpResponse.body).toEqual(new MissingParamError('cpf'));
   })
 
   it('Should return 400 if password is no provided.', async () => {
@@ -79,7 +79,7 @@ describe('SignUp Controller', () => {
     const httpRequest = {
       body: {
         name: BODY.name,
-        email: BODY.email
+        cpf: BODY.cpf
       }
     }
 
@@ -94,7 +94,7 @@ describe('SignUp Controller', () => {
     const httpRequest = {
       body: {
         name: BODY.name,
-        email: BODY.email,
+        cpf: BODY.cpf,
         password: "word"
       }
     }

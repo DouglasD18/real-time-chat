@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 const USER: User = {
   id: "any_id",
   name: "any_name",
-  email: "any@mail.com",
+  cpf: "any@mail.com",
   password: "any_password"
 }
 

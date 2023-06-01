@@ -5,19 +5,19 @@ export class LoginController implements Controller {
 
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
-      const requiredsFields = ["email", "password"];
+      const requiredsFields = ["cpf", "password"];
       for (const field of requiredsFields) {
         if (!httpRequest.body[field]) {
           return badRequest(new MissingParamError(field));
         }
       }
 
-      const { email, password } = httpRequest.body;
+      const { cpf, password } = httpRequest.body;
       if (password.length < 6) {
         return badRequest(new InvalidParamError("password", "Senha com menos de 6 caracteres!"));
       }
 
-      const token = await this.login.handle({ email, password });
+      const token = await this.login.handle({ cpf, password });
 
       return ok({ token });
     } catch (error) {

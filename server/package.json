@@ -7,6 +7,8 @@
     "start": "npm run build  && node dist/main/server.js",
     "build": "rimraf dist && tsc",
     "dev": "tsnd src/main/server.ts",
+    "test:unit": "npm test -- --silent -c jest-unit-config.js",
+    "test:integration": "npm test -- --silent -c jest-integration-config.js",
     "test": "jest --watch --noStackTrace --runInBand"
   },
   "author": "Douglas Aguiar",
@@ -17,7 +19,9 @@
     "@types/jsonwebtoken": "^9.0.2",
     "@types/mongodb": "^4.0.7",
     "@types/node": "^20.2.1",
+    "@types/supertest": "^2.0.12",
     "jest": "^29.5.0",
+    "supertest": "^6.3.3",
     "ts-jest": "^29.1.0",
     "ts-node-dev": "^2.0.0"
   },

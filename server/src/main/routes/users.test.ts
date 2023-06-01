@@ -3,7 +3,7 @@ import app from '../config/app';
 
 const USER = {
   name: "douglinhas",
-  email: "mail@mail.com",
+  cpf: "mail@mail.com",
   password: "password"
 }
 
@@ -22,7 +22,7 @@ describe("Routes", () => {
         .post(ROUTE)
         .send({
           name: "douglinhas",
-          email: "mail@mail.com"
+          cpf: "mail@mail.com"
         })
         .expect(400)
     })
@@ -32,7 +32,7 @@ describe("Routes", () => {
         .post(ROUTE)
         .send({
           name: "douglinhas",
-          email: "mail@mail.com",
+          cpf: "mail@mail.com",
           password: "pass"
         })
         .expect(400)
@@ -43,7 +43,7 @@ describe("Routes", () => {
         .post(ROUTE)
         .send({
           name: "any_name",
-          email: "any@mail.com",
+          cpf: "any@mail.com",
           password: "password"
         })
         .expect(201)
@@ -57,7 +57,7 @@ describe("Routes", () => {
       await request(app)
         .get(ROUTE)
         .send({
-          email: "douglinhas"
+          cpf: "douglinhas"
         })
         .expect(400)
     })
@@ -66,7 +66,7 @@ describe("Routes", () => {
       await request(app)
         .get(ROUTE)
         .send({
-          email: "mail@mail.com",
+          cpf: "mail@mail.com",
           password: "pass"
         })
         .expect(400)
@@ -76,7 +76,7 @@ describe("Routes", () => {
       await request(app)
         .get(ROUTE)
         .send({
-          email: "mail@mail.com",
+          cpf: "mail@mail.com",
           password: "password"
         })
         .expect(404)

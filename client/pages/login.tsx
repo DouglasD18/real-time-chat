@@ -18,6 +18,8 @@ export default function LoginPage() {
   });
   const [userExists, setUserExists] = useState(true);
   const [error, setError] = useState('');
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [disabledClass, setDisabledClass] = useState("disabled");
   const router = useRouter();
 
   const title = userExists ? "Faça seu Login" : "Faça seu Cadastro";
@@ -27,6 +29,15 @@ export default function LoginPage() {
       ...formData,
       [name]: e.target.value
     })
+
+    if (formData.cpf.trim().length === 11 &&
+        formData.password.trim().length > 5) {
+      setIsDisabled(false);
+      setDisabledClass("abled");
+    } else {
+      setIsDisabled(true);
+      setDisabledClass("disabled");
+    }
   }
 
   const handleForm = async (e: FormEvent<HTMLFormElement>) => {
@@ -52,6 +63,7 @@ export default function LoginPage() {
         cpf: "",
         password: ""
       });
+      setIsDisabled(true);
       console.log(response);
 
       const token = await response.json();
@@ -89,7 +101,7 @@ export default function LoginPage() {
             value={ formData.password }
             onChange={ (e: ChangeEvent<HTMLInputElement>) => { handleFormData(e, "password") } }
           />
-          <Button>{ userExists ? "Login" : "Cadastrar" }</Button>
+          <Button isDisabled={ isDisabled } disabledClass={ disabledClass }>{ userExists ? "Login" : "Cadastrar" }</Button>
           {error && <p className={ styles.error }>{ error }</p>}
           <p className={ styles.p }>{ userExists ? LOGIN_TEXT : CADASTRO_TEXT }<a onClick={() => setUserExists(!userExists) } className={ styles.link }>{ userExists ? "Cadastrar" : "Login" }</a></p>
         </form>
